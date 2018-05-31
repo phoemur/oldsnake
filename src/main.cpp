@@ -11,11 +11,11 @@ int main()
     Field field (30, 60);
     Snake snake (&field, 6);
 
-    bool exit_flag = false;
-    int ch;
     auto t1 = steady_clock::now();
     field.show();
 
+    int ch;
+    bool exit_flag = false;
     while (!exit_flag) {
 
         ch = getch();

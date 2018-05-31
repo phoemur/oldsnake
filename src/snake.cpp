@@ -44,13 +44,13 @@ void Snake::show()
     attroff(COLOR_PAIR(Color::cyan));
 
     // Print body
+    attron(COLOR_PAIR(Color::green));
     for (std::size_t i=1; i < size; ++i) {
         coord = coordinates[i];
         move(coord.first+1, coord.second);
-        attron(COLOR_PAIR(Color::green));
         printw("=");
-        attroff(COLOR_PAIR(Color::green));
     }
+    attroff(COLOR_PAIR(Color::green));
 
     // Print score
     move(field->height() + 1, 0);
@@ -109,5 +109,4 @@ void Snake::set_direction(Directions dir)
     if (std::abs(static_cast<int>(dir) - static_cast<int>(next_dir)) >= 2) { // Avoid 180 degrees turns
         next_dir = dir;
     }
-
 }
