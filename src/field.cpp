@@ -27,10 +27,16 @@ Field::Field(std::size_t y_size, std::size_t x_size)
     init_pair(3, COLOR_WHITE, COLOR_WHITE);
     init_pair(4, COLOR_CYAN, COLOR_BLACK);
 
+    // Test terminal size
+    int test_x, test_y;
+    getmaxyx(stdscr, test_y, test_x);
     if (x == 1 and y == 1) {
-        getmaxyx(stdscr, y, x); // use max screen size
-        y -= 2; // spare 2 rows to print information
-        x -= 2;
+        y = test_y - 2; // spare 2 rows to print information
+        x = test_x - 2;
+    }
+    else {
+        if (x+2 > test_x) x = test_x-2;
+        if (y+2 > test_y) y = test_y-2;
     }
 
     dist_x = std::uniform_int_distribution<std::size_t>(0, x-1);
